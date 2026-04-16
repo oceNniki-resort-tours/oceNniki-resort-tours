@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oce N' Niki Resort & Tours — Sri Lanka</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --deep-green: #1A3A2A;
+    --jungle: #2D5A3D;
+    --sand: #F5EDD6;
+    --cream: #FDFAF3;
+    --terracotta: #C46843;
+    --ocean: #1E4D6B;
+    --text: #1C1C1A;
+    --muted: #6B6457;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(26, 58, 42, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.02em;
+  }
+  .nav-logo span { font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(245, 237, 214, 0.8);
+    text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--deep-green);
+    border: none; padding: 0.6rem 1.4rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #e0bc60; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background:
+      linear-gradient(160deg, rgba(26,58,42,0.65) 0%, rgba(30,77,107,0.45) 100%),
+      url('https://images.unsplash.com/photo-1573408301823-a0f2e1a09d19?w=1600&q=80') center/cover no-repeat;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+    background: linear-gradient(to top, var(--cream), transparent);
+  }
+  .hero-content { max-width: 700px; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    color: var(--gold); font-size: 0.8rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 900; line-height: 0.95;
+    color: var(--sand); margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold); display: block;
+  }
+  .hero-desc {
+    color: rgba(245, 237, 214, 0.75); font-size: 1.05rem;
+    line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--deep-green);
+    padding: 0.9rem 2.2rem; font-weight: 500;
+    font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all 0.2s; text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #e0bc60; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--sand);
+    padding: 0.9rem 2.2rem; font-weight: 400;
+    font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid rgba(245, 237, 214, 0.4); cursor: pointer;
+    transition: all 0.2s; text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    position: absolute; bottom: 3rem; right: 3rem; z-index: 1;
+    display: flex; gap: 3rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-label {
+    color: rgba(245, 237, 214, 0.6); font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 3rem; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    color: var(--terracotta); font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-tag::before {
+    content: ''; width: 30px; height: 1px; background: var(--terracotta);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--deep-green); margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--jungle); }
+  .section-desc {
+    color: var(--muted); font-size: 1rem; line-height: 1.8;
+    max-width: 540px; font-weight: 300;
+  }
+
+  /* ── DESTINATIONS ── */
+  .destinations { background: var(--cream); }
+  .dest-header { max-width: 1200px; margin: 0 auto 3.5rem; }
+  .dest-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1.2rem;
+  }
+  .dest-card {
+    position: relative; overflow: hidden;
+    cursor: pointer; display: block;
+    text-decoration: none;
+  }
+  .dest-card:nth-child(1) { grid-row: span 2; }
+  .dest-card:nth-child(1) .dest-img { height: 100%; min-height: 540px; }
+  .dest-card:nth-child(3) { grid-row: span 2; }
+  .dest-card:nth-child(3) .dest-img { height: 100%; min-height: 540px; }
+  .dest-card:nth-child(4) { grid-row: span 2; }
+  .dest-card:nth-child(4) .dest-img { height: 100%; min-height: 540px; }
+  .dest-img {
+    height: 260px; width: 100%; object-fit: cover; display: block;
+    transition: transform 0.6s ease;
+  }
+  .dest-card:hover .dest-img { transform: scale(1.04); }
+  .dest-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,58,42,0.85) 0%, transparent 50%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.5rem;
+  }
+  .dest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--sand); line-height: 1.1; margin-bottom: 0.3rem;
+  }
+  .dest-tag-pill {
+    display: inline-block; background: var(--gold);
+    color: var(--deep-green); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.7rem; margin-top: 0.5rem;
+    font-weight: 500;
+  }
+
+  /* ── TOURS ── */
+  .tours { background: var(--deep-green); }
+  .tours .section-tag { color: var(--gold); }
+  .tours .section-tag::before { background: var(--gold); }
+  .tours .section-title { color: var(--sand); }
+  .tours .section-title em { color: var(--gold); }
+  .tours .section-desc { color: rgba(245,237,214,0.65); }
+  .tours-header {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3rem; gap: 2rem;
+  }
+  .tours-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .tour-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    overflow: hidden; transition: transform 0.3s, border-color 0.3s;
+  }
+  .tour-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,168,76,0.5);
+  }
+  .tour-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+  .tour-body { padding: 1.5rem; }
+  .tour-duration {
+    color: var(--gold); font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .tour-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--sand); line-height: 1.25; margin-bottom: 0.8rem;
+  }
+  .tour-desc {
+    color: rgba(245,237,214,0.55); font-size: 0.88rem;
+    line-height: 1.7; font-weight: 300; margin-bottom: 1.2rem;
+  }
+  .tour-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1rem; border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .tour-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--gold);
+  }
+  .tour-price span { font-size: 0.8rem; font-weight: 400; font-family: 'DM Sans', sans-serif; color: rgba(245,237,214,0.4); }
+  .tour-btn {
+    background: none; border: 1px solid var(--gold);
+    color: var(--gold); padding: 0.45rem 1rem;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .tour-btn:hover { background: var(--gold); color: var(--deep-green); }
+
+  /* ── WHY US ── */
+  .why { background: var(--sand); }
+  .why-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .why-img-wrap { position: relative; }
+  .why-img {
+    width: 100%; height: 560px; object-fit: contain; display: block;
+  }
+  .why-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--deep-green); padding: 1.8rem;
+    text-align: center; min-width: 140px;
+  }
+  .why-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .why-badge-text {
+    color: rgba(245,237,214,0.7); font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.4rem;
+    line-height: 1.4;
+  }
+  .why-content .section-title { color: var(--deep-green); }
+  .why-features { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-feature { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .why-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--deep-green); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .why-feature-title {
+    font-weight: 500; font-size: 0.95rem;
+    color: var(--deep-green); margin-bottom: 0.3rem;
+  }
+  .why-feature-desc {
+    font-size: 0.88rem; color: var(--muted);
+    line-height: 1.7; font-weight: 300;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--cream); }
+  .test-header { max-width: 1200px; margin: 0 auto 3rem; }
+  .test-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .test-card {
+    background: white; border: 1px solid rgba(0,0,0,0.07);
+    padding: 2rem;
+  }
+  .test-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; }
+  .test-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-style: italic;
+    color: var(--text); line-height: 1.8; margin-bottom: 1.5rem;
+  }
+  .test-author { display: flex; align-items: center; gap: 0.8rem; }
+  .test-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    object-fit: cover; background: var(--jungle);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 500; font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .test-name { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+  .test-origin { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--jungle);
+    padding: 5rem 3rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: 'CEYLON';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 18vw; font-weight: 900;
+    color: rgba(255,255,255,0.04); white-space: nowrap;
+    pointer-events: none; user-select: none;
+  }
+  .cta-banner .section-tag { color: var(--gold); justify-content: center; }
+  .cta-banner .section-tag::before { background: var(--gold); }
+  .cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; color: var(--sand);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .cta-banner h2 em { font-style: italic; color: var(--gold); }
+  .cta-banner p {
+    color: rgba(245,237,214,0.6); font-size: 0.95rem;
+    line-height: 1.8; font-weight: 300; margin-bottom: 2.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text); padding: 3rem 3rem 2rem;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; max-width: 100%;
+  }
+  .footer-brand .nav-logo { font-size: 1.2rem; display: block; margin-bottom: 0.8rem; }
+  .footer-desc {
+    color: rgba(255,255,255,0.35); font-size: 0.85rem;
+    line-height: 1.8; font-weight: 300; max-width: 240px;
+  }
+  .footer-col h4 {
+    color: rgba(255,255,255,0.5); font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.2rem;
+  }
+  .footer-col a {
+    display: block; color: rgba(255,255,255,0.65);
+    text-decoration: none; font-size: 0.88rem;
+    margin-bottom: 0.6rem; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.5rem; margin-top: 1rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.25); font-size: 0.8rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.8s ease 0.2s both; }
+  .hero h1 { animation: fadeUp 0.8s ease 0.4s both; }
+  .hero-desc { animation: fadeUp 0.8s ease 0.6s both; }
+  .hero-btns { animation: fadeUp 0.8s ease 0.8s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-stats { display: none; }
+    .dest-grid { grid-template-columns: 1fr 1fr; }
+    .dest-card:nth-child(1) { grid-column: 1 / -1; grid-row: auto; }
+    .tours-grid { grid-template-columns: 1fr; }
+    .why-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .why-img { height: 320px; }
+    .why-badge { bottom: -1rem; right: -0.5rem; }
+    .test-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV  baby this or -->
+<nav>
+  <div class="nav-logo"><span>Oce N' Niki </span>Resort & Tours</div>
+  <ul class="nav-links">
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#tours">Tours</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Book a Tour</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Discover the Pearl of the Indian Ocean</div>
+    <h1>
+      Ancient<br>
+      <em>Sri Lanka</em>
+      Awaits.
+    </h1>
+    <p class="hero-desc">
+      Lush rainforests, ancient temples, wild elephants, and golden beaches — 
+      all within an island that fits in your hand but fills your soul.
+    </p>
+    <div class="hero-btns">
+      <a href="#tours" class="btn-primary">Explore Tours</a>
+      <a href="#destinations" class="btn-outline">View Destinations</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">UNESCO Sites</div></div>
+    <div class="stat"><div class="stat-num">350+</div><div class="stat-label">Experiences</div></div>
+    <div class="stat"><div class="stat-num">12k+</div><div class="stat-label">Happy Travelers</div></div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinations">
+  <div class="dest-header">
+    <div class="section-tag">Where to Go</div>
+    <h2 class="section-title">Iconic <em>destinations</em><br>across the island</h2>
+  </div>
+  <div class="dest-grid">
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/sigiriyarock.jpg" alt="Sigiriya Rock Fortress">
+      <div class="dest-overlay">
+        <div class="dest-name">Sigiriya the Rock Fortress<br> & Dambulla</div>
+        <div class="dest-tag-pill">UNESCO World Heritage</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/ella.jpg" alt="Ella Hill Country">
+      <div class="dest-overlay">
+        <div class="dest-name">Ella & the<br>Hill Country</div>
+        <div class="dest-tag-pill">Tea Trails & Waterfalls</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/mirissa.jpg" alt="Mirissa Beach">
+      <div class="dest-overlay">
+        <div class="dest-name">Mirissa<br>& South Coast</div>
+        <div class="dest-tag-pill">Beaches & Whale Watching</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/gallefort.jpg" alt="Galle Fort">
+      <div class="dest-overlay">
+        <div class="dest-name">Galle<br>&amp; Unawatuna</div>
+        <div class="dest-tag-pill">Colonial Heritage</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/jaffna.jpg" alt="Galle Fort">
+      <div class="dest-overlay">
+        <div class="dest-name">Jaffna &<br> Nallur Kandaswamy Temple</div>
+        <div class="dest-tag-pill">Northern Culture & Spiritual Heritage</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/anurapolo.jpg" alt="Anuradhapura-Polonnaruwa">
+      <div class="dest-overlay">
+        <div class="dest-name">Anuradhapura<br>&amp; Polonnaruwa</div>
+        <div class="dest-tag-pill">Sacred Cities & Ancient Civilisations</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/yalawil.jpg" alt="Yala&Wilpattu National Park">
+      <div class="dest-overlay">
+        <div class="dest-name">Yala & the Wilpattu<br>National Parks</div>
+        <div class="dest-tag-pill">Wildlife & Safari Tours</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/nuwaraeliya.jpg" alt="Nuwara Eliya">
+      <div class="dest-overlay">
+        <div class="dest-name">Nuwara Eliya <br>& Little England</div>
+        <div class="dest-tag-pill">Misty Hills & Tea Estates</div>
+      </div>
+    </a>
+    <a class="dest-card" href="#tours">
+      <img class="dest-img" src="images/Pinna.jpg" alt="Pinnawala Elelpant">
+      <div class="dest-overlay">
+        <div class="dest-name">Pinnawala Elephant<br>Sanctuary</div>
+        <div class="dest-tag-pill">Gentle Giants and Nature Experiences</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section class="tours" id="tours">
+  <div class="tours-header">
+    <div>
+      <div class="section-tag">Curated Journeys</div>
+      <h2 class="section-title">Handpicked <em>tours</em><br>for every traveller</h2>
+    </div>
+    <p class="section-desc">From 5-day cultural circuits to 14-day grand island expeditions, every itinerary is crafted with local expertise.</p>
+  </div>
+  <div class="tours-grid">
+    <div class="tour-card">
+      <img class="tour-img" src="images/northcent.jpg" alt="Cultural Triangle Tour">
+      <div class="tour-body">
+        <div class="tour-duration">7 Days · 6 Nights</div>
+        <div class="tour-name">The Cultural Triangle Circuit</div>
+        <p class="tour-desc">Sigiriya, Polonnaruwa, Anuradhapura, Dambulla — immerse in two millennia of civilisation and temple art.</p>
+        <div class="tour-footer">
+          <div class="tour-price">$890 <span>/ person</span></div>
+          <button class="tour-btn">Details</button>
+        </div>
+      </div>
+    </div>
+    <div class="tour-card">
+      <img class="tour-img" src="images/south.jpg" alt="Southern Beaches">
+      <div class="tour-body">
+        <div class="tour-duration">10 Days · 9 Nights</div>
+        <div class="tour-name">Southern Shores & Wild Safari</div>
+        <p class="tour-desc">Galle's fort, Mirissa's dolphins, Tangalle's turtles, and Yala's leopards — the south in all its glory.</p>
+        <div class="tour-footer">
+          <div class="tour-price">$1,250 <span>/ person</span></div>
+          <button class="tour-btn">Details</button>
+        </div>
+      </div>
+    </div>
+    <div class="tour-card">
+      <img class="tour-img" src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=75" alt="Tea Country">
+      <div class="tour-body">
+        <div class="tour-duration">14 Days · 13 Nights</div>
+        <div class="tour-name">Grand Island Expedition</div>
+        <p class="tour-desc">The complete Sri Lanka experience — temples, hill country tea estates, wildlife, beaches, and vibrant Colombo.</p>
+        <div class="tour-footer">
+          <div class="tour-price">$1,890 <span>/ person</span></div>
+          <button class="tour-btn">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US add a collage image from canva to the image area -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-img-wrap">
+      <img class="why-img" src="images/testomony.jpg" alt="Local experience">
+      <div class="why-badge">
+        <div class="why-badge-num">15+</div>
+        <div class="why-badge-text">Years of Local Expertise</div>
+      </div>
+    </div>
+    <div class="why-content">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">Rooted in the<br><em>island's soul</em></h2>
+      <p class="section-desc">We're not a foreign agency selling postcards — we're Sri Lankan storytellers who know every road, every monsoon rhythm, every hidden gem.</p>
+      <div class="why-features">
+        <div class="why-feature">
+          <div class="why-icon">🌿👤</div>
+          <div>
+            <div class="why-feature-title">Local, expert guides</div>
+            <p class="why-feature-desc">Every guide is born and raised in Sri Lanka, fluent in history, wildlife, and culture — not just a script.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">🚗📍</div>
+          <div>
+            <div class="why-feature-title">Fully tailored itineraries</div>
+            <p class="why-feature-desc">No two trips are identical. We build every journey around your pace, passions, and travel style.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">🐘🙂‍↕️</div>
+          <div>
+            <div class="why-feature-title">Responsible & sustainable</div>
+            <p class="why-feature-desc">We partner with eco-certified lodges and follow strict wildlife viewing ethics to protect what we love.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-header">
+    <div class="section-tag">Traveller Stories</div>
+    <h2 class="section-title">Words from those<br><em>who've been there</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"The moment our guide stopped at a roadside stall for fresh king coconuts and started telling stories — that's when I knew this was something different."</p>
+      <div class="test-author">
+        <div class="test-avatar">SL</div>
+        <div>
+          <div class="test-name">Sophie Laurent</div>
+          <div class="test-origin">Paris, France · Cultural Triangle Tour</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"We came for the beaches, stayed for Sigiriya, left completely changed. Ceylon & Beyond made everything effortless and utterly magical."</p>
+      <div class="test-author">
+        <div class="test-avatar">JK</div>
+        <div>
+          <div class="test-name">James & Karen Hollis</div>
+          <div class="test-origin">Melbourne, Australia · Grand Expedition</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"I saw three leopards in Yala on the first morning. I nearly cried. Our naturalist guide knew every track in that park. Absolutely extraordinary."</p>
+      <div class="test-author">
+        <div class="test-avatar">MR</div>
+        <div>
+          <div class="test-name">Marco Rinaldi</div>
+          <div class="test-origin">Milan, Italy · Southern Shores Safari</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner" id="contact">
+  <div class="cta-inner">
+    <div class="section-tag">Start Your Journey</div>
+    <h2>Ready to discover<br><em>Sri Lanka?</em></h2>
+    <p>Tell us your dream trip — we'll craft the perfect itinerary. No obligation, no cookie-cutter packages. Just the island, done right.</p>
+    <a href="mailto:hello@ceylonbeyond.com" class="btn-primary" style="font-size:0.95rem; padding: 1rem 2.5rem;">Plan My Trip</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="nav-logo"><span>Oce N' Niki </span>Resort & Tours</span>
+    <p class="footer-desc">Crafting authentic Sri Lankan journeys since 2009. Based in Colombo, rooted in the island.🏝️🇱🇰</p>
+  </div>
+  <div class="footer-col">
+    <h4>Tours</h4>
+    <a href="#">Cultural Circuit</a>
+    <a href="#">Southern Safari</a>
+    <a href="#">Hill Country</a>
+    <a href="#">Grand Expedition</a>
+    <a href="#">Honeymoon Special</a>
+  </div>
+  <div class="footer-col">
+    <h4>Destinations</h4>
+    <a href="#">Sigiriya</a>
+    <a href="#">Ella & Nuwara Eliya</a>
+    <a href="#">Galle Fort</a>
+    <a href="#">Yala & Udawalawe</a>
+    <a href="#">Colombo</a>
+  </div>
+  <div class="footer-col">
+    <h4>Info</h4>
+    <a href="#">About Us</a>
+    <a href="#">Sustainability</a>
+    <a href="#">FAQs</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Oce N' Niki Resort & Tours. All rights reserved.</p>
+    <p style="color: rgba(255,255,255,0.2); font-size: 0.75rem;">Made with love in Sri Lanka 🇱🇰</p>
+  </div>
+</footer>
+
+</body>
+</html>
